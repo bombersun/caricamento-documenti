@@ -1,3 +1,17 @@
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Diciamo a Express dove si trova la cartella pubblica (frontend)
+app.use(express.static(path.join(__dirname, "../frontend")));
+
+// Quando qualcuno visita la homepage (/), mandiamo index.html
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/index.html"));
+});
+
 const express = require('express');
 const multer = require('multer');
 const jwt = require('jsonwebtoken');
