@@ -1,3 +1,16 @@
+import express from "express";
+import multer from "multer";
+import nodemailer from "nodemailer";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app = express();
+const PORT = process.env.PORT || 10000;
+
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -11,7 +24,7 @@ app.use(express.static(path.join(__dirname, "../frontend")));
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/index.html"));
 });
-
+git commit -m "aggiungo type module"
 const express = require('express');
 const multer = require('multer');
 const jwt = require('jsonwebtoken');
@@ -25,6 +38,13 @@ const PORT = 4000;
 const JWT_SECRET = 'dev-secret';
 const UPLOAD_DIR = path.join(__dirname, 'uploads');
 if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR);
+
+app.use(express.static(path.join(__dirname, "../frontend")));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/index.html"));
+});
+
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
